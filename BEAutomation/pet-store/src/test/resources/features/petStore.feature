@@ -7,18 +7,15 @@ Feature: API automated check on DEMO PET STORE
       Update this pet status to "sold". Assert status updated.
       Delete this pet. Assert deletion.
 
-    When the user posts a new pet with category "Dog", name "Pancho", tags "BestFriend", status "available" to the store
-    Then the user gets status code "200"
-
     When the user gets pets with status "available"
     Then the user gets status code "200"
     And the user asserts the list of pets is not empty
 
+    When the user posts a new pet with category "Dog", name "Pancho", tags "BestFriend", status "available" to the store
+    Then the user gets status code "200"
+
     When the user updates the previous pet to status "sold"
     Then the user gets status code "200"
-    And the user gets the "sold" pet
 
     When the user deletes the previous pet
     Then the user gets status code "200"
-    And the user gets the "deleted" pet
-    And the user gets status code "404"
