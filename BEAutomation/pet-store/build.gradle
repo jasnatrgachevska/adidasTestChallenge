@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath('net.serenity-bdd:serenity-gradle-plugin:1.9.31')
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+group 'com.pet.store'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+apply plugin: 'java'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+dependencies {
+    compile 'net.serenity-bdd:serenity-core:1.9.45'
+    compile 'net.serenity-bdd:serenity-rest-assured:1.9.45'
+    compile 'net.serenity-bdd:serenity-cucumber:1.9.15'
+    compile 'org.slf4j:slf4j-simple:1.6.1'
+    compile 'org.slf4j:slf4j-api:1.6.1'
+    compile 'org.json:json:20170516'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
+    implementation group: 'io.gsonfire', name: 'gson-fire', version: '1.0.1'
+}
+
+test {
+    systemProperties System.getProperties()
+    testLogging.showStandardStreams = true
+    test.reports.getHtml().enabled = false
+    test.reports.junitXml.enabled = false
+    include 'com/petstore/serenityRunner/TestRunner.class'
+}
